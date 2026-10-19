@@ -38,9 +38,25 @@
 <img width="1327" height="784" alt="image" src="https://github.com/user-attachments/assets/45b157df-fa99-4484-9d38-8e97b1a1c666" />
 - Press Win+R, type optionalfeatures, and untick: Hyper-V, Virtual Machine Platform, Windows Hypervisor Platform, and Windows Subsystem for Linux (if you use it).
 <img width="868" height="834" alt="image" src="https://github.com/user-attachments/assets/44842bfe-2879-4f5e-880b-f6e7e30cadd2" />
+
 - Open Windows Security > Device security > Core isolation details and turn Memory integrity OFF.
 - Open Command Prompt as Administrator and run: bcdedit /set hypervisorlaunchtype off
+- Remove the UEFI lock: Open Command Prompt as Administrator and run these one at a time. They use a free drive letter, X:, so if X: is taken, pick another unused letter.
+
+            mountvol X: /s
+            copy %WINDIR%\System32\SecConfig.efi X:\EFI\Microsoft\Boot\SecConfig.efi /Y
+            bcdedit /create {0cb3b571-2f2e-4343-a879-d86a476d7215} /d "DGOptOut" /application osloader
+            bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} path "\EFI\Microsoft\Boot\SecConfig.efi"
+            bcdedit /set {bootmgr} bootsequence {0cb3b571-2f2e-4343-a879-d86a476d7215}
+            bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} loadoptions DISABLE-LSA-ISO,DISABLE-VBS
+            bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} device partition=X:
+            mountvol X: /d
+            bcdedit /set hypervisorlaunchtype off
 - Restart Windows.
+
+      Before Windows loads, a text screen will say something like 
+      “Do you want to disable Credential Guard? Press F3 to disable, or any other key to continue.” 
+      Press F3 quickly (it only waits a few seconds). If you miss it, nothing is harmed. Repeat step 2 and restart again
 
 
 
