@@ -61,6 +61,12 @@
 - Agree to EULA
   <img width="1248" height="807" alt="image" src="https://github.com/user-attachments/assets/2922eca7-522e-4715-adfd-25f63612f0f1" />
 
+- Ignore the losing data warning, as it applies to the empty virtual disk.
+<img width="1296" height="811" alt="image" src="https://github.com/user-attachments/assets/d1198b3a-d090-4062-8ab3-aedd5d09e301" />
+
+- Location and time zone: Country: Nigeria, time zone: Africa/Lagos, keyboard layout: U.S. English (or whatever you use). Click Next.
+
+
 
 
 
