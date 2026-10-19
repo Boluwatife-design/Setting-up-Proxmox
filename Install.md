@@ -57,6 +57,10 @@
       Before Windows loads, a text screen will say something like 
       “Do you want to disable Credential Guard? Press F3 to disable, or any other key to continue.” 
       Press F3 quickly (it only waits a few seconds). If you miss it, nothing is harmed. Repeat step 2 and restart again
+      
+- Agree to EULA
+  <img width="1248" height="807" alt="image" src="https://github.com/user-attachments/assets/2922eca7-522e-4715-adfd-25f63612f0f1" />
+
 
 
 
