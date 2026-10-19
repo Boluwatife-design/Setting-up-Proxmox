@@ -27,4 +27,13 @@
 - Storage: attach the Proxmox ISO to the optical drive, start the VM, and follow the installer
 
 
+# Start the VM and Install
+
+- Click Ok to save your settings
+- Select your Proxmox VM in the list and click Start. A window opens and boots from the ISO.
+- At the blue Proxmox menu, choose Install Proxmox VE (Graphical) and press Enter.
+<img width="1013" height="756" alt="image" src="https://github.com/user-attachments/assets/05f80aba-8f44-4de0-a814-e03a686c3598" />
+
+
+
 
