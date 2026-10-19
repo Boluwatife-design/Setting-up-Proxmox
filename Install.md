@@ -34,6 +34,15 @@
 - At the blue Proxmox menu, choose Install Proxmox VE (Graphical) and press Enter.
 <img width="1013" height="756" alt="image" src="https://github.com/user-attachments/assets/05f80aba-8f44-4de0-a814-e03a686c3598" />
 
+## Error
+<img width="1327" height="784" alt="image" src="https://github.com/user-attachments/assets/45b157df-fa99-4484-9d38-8e97b1a1c666" />
+- Press Win+R, type optionalfeatures, and untick: Hyper-V, Virtual Machine Platform, Windows Hypervisor Platform, and Windows Subsystem for Linux (if you use it).
+<img width="868" height="834" alt="image" src="https://github.com/user-attachments/assets/44842bfe-2879-4f5e-880b-f6e7e30cadd2" />
+- Open Windows Security > Device security > Core isolation details and turn Memory integrity OFF.
+- Open Command Prompt as Administrator and run: bcdedit /set hypervisorlaunchtype off
+- Restart Windows.
+
+
 
 
 
