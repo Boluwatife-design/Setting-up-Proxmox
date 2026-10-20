@@ -76,6 +76,16 @@
             Click Next.
 - Summary: Click Install and wait for it to finish (a few minutes).
 - Reboot when prompted.
+- After it reboots, the VM’s console will show a line like: Please use a web browser to access https://192.168.x.x:8006.
+- Open that address in Chrome or Edge on Windows, accept the certificate warning, and log in as root with Realm Linux PAM
+
+## Error: installer menu loading again. It means the install finished and the VM rebooted, but it’s booting from the ISO instead of the hard disk you just installed to. Your install is fine.
+- Fix it by taking the ISO out of the drive:
+- In the VM window’s top menu, click Devices > Optical Drives, then choose Remove disk from virtual drive. If it asks you to force unmount, say yes.
+- Restart the VM: Machine > Reset.
+<img width="725" height="255" alt="Screenshot 2026-10-20 075848" src="https://github.com/user-attachments/assets/12d89d09-1bac-422d-b1d8-b0a3e9931e81" />
+
+
 
 
 
