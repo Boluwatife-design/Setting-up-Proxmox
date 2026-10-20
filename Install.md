@@ -65,6 +65,17 @@
 <img width="1296" height="811" alt="image" src="https://github.com/user-attachments/assets/d1198b3a-d090-4062-8ab3-aedd5d09e301" />
 
 - Location and time zone: Country: Nigeria, time zone: Africa/Lagos, keyboard layout: U.S. English (or whatever you use). Click Next.
+- Set a root password and write it down. Enter any email address (it doesn’t need to be real). Click Next.
+<img width="650" height="410" alt="image" src="https://github.com/user-attachments/assets/c7d98d63-7102-4795-9376-957ed299c88b" />
+
+- Network configuration:
+  
+            Management interface: leave the default
+            Hostname: pve.local (or anything like pve.lab)
+            IP address, gateway, DNS: leave what the installer fills in. Write down the IP address.
+            Click Next.
+- Summary: Click Install and wait for it to finish (a few minutes).
+- Reboot when prompted.
 
 
 
