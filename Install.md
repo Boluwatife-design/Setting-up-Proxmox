@@ -85,6 +85,27 @@
 - Restart the VM: Machine > Reset.
 <img width="725" height="255" alt="Screenshot 2026-10-20 075848" src="https://github.com/user-attachments/assets/12d89d09-1bac-422d-b1d8-b0a3e9931e81" />
 
+- Write down the IP address on the https://...:8006 line. Open that address in Chrome or Edge on Windows, accept the certificate warning, and log in as root with Realm Linux PAM 
+<img width="1899" height="844" alt="image" src="https://github.com/user-attachments/assets/de4599f9-4e30-4d80-878f-5df6b134e49d" />
+
+- To log in:
+
+      Username: root
+      Password: the one you set during install
+      Realm: Linux PAM standard authentication
+      Language: whatever you like
+
+- This works both on the VM’s console (the black text screen, where you’ll see pve login:) and on the web UI at https://<ip>:8006.
+- If you forgot the password, you can reset it without reinstalling:
+
+      In the Proxmox VM’s boot menu, choose Advanced Options > Rescue Boot (from the ISO), which boots your installed system.
+      At the prompt, run passwd root and set a new password.
+      Remove the ISO and reset the VM.
+
+<img width="1907" height="924" alt="image" src="https://github.com/user-attachments/assets/e749b12e-3daf-473a-b44e-6168361e025a" />
+
+
+
 
 
 
