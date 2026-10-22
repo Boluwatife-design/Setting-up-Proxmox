@@ -104,6 +104,39 @@
 
 <img width="1907" height="924" alt="image" src="https://github.com/user-attachments/assets/e749b12e-3daf-473a-b44e-6168361e025a" />
 
+## Error: Unable to log into the web version  # cause: IP conflict with windows PC
+
+- Create the Host-only network (Windows)
+In VirtualBox, go to File → Tools → Network Manager → Host-only Networks. If one already exists, use it. If not, click Create. Note its IPv4 address (usually 192.168.56.1/24). Leave the DHCP server unticked, since Proxmox will use a static IP.
+
+- Switch the VM’s adapter
+Power off the VM (poweroff in the console). Then go to Settings → Network → Adapter 1 → Attached to: Host-only Adapter and pick that network from the Name dropdown.
+
+- Change Proxmox’s IP
+Start the VM, log in as root, and run:
+
+            nano /etc/network/interfaces
+            
+            In the vmbr0 section, set:
+            
+            address 192.168.56.10/24
+            
+            and delete the gateway line. Leave bridge-ports nic0 as it is. Save with Ctrl+O, Enter, Ctrl+X.
+            
+            Then run nano /etc/hosts and change the line to:
+            
+            192.168.56.10 pve.lab pve
+            
+            Save and exit, then run reboot.
+
+- Log in
+Browse to https://192.168.56.10:8006, click Advanced → Proceed, and log in as root with the Linux PAM realm.
+
+If your Host-only network uses a different range than 192.168.56.x, use an address in that range instead.
+
+
+
+
 
 
 
