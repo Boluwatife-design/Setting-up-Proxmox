@@ -168,6 +168,35 @@ If your Host-only network uses a different range than 192.168.56.x, use an addre
       ip -br addr
       ping -c 3 google.com
 
+  # No error: To continue with next step:
+ - fix the repositories in the web UI (Node > Updates > Repositories: disable the enterprise entries, add No-Subscription), run apt update && apt full-upgrade -y
+1. Disable the two enterprise repos
+  
+              Click the ceph-squid enterprise row (enterprise.proxmox.com/debian/ceph-squid), then click Disable.
+             Click the pve-enterprise row (enterprise.proxmox.com/debian/pve), then click Disable.
+
+2. Add the free repo
+- Click Add. If a warning about no subscription pops up, click OK.
+In the Repository dropdown, choose No-Subscription.
+- Click Add >> No Subscription >> Add
+
+3. Update the system
+- Click Reload to refresh the list. It should finish without errors. If you get errors, the NAT internet adapter isn’t working yet (check with ping -c 3 google.com in the Shell).
+- Open Updates (just above Repositories in the left menu), click Refresh, then Upgrade. A console window opens and asks you to confirm: type Y and press Enter.
+- Wait for it to finish. It may take several minutes.
+
+Or do it all in the Shell tab:
+
+      apt update && apt full-upgrade -y
+
+4. Take a snapshot
+
+- Once the upgrade finishes, shut down the VM and take a VirtualBox snapshot (Machine > Take Snapshot), so you can roll back if you break something later.
+
+## The “no valid subscription” popup at login will keep appearing. That’s normal on the free version, so just click OK.
+
+  
+
 
 
 
