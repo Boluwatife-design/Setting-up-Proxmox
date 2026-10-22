@@ -174,15 +174,22 @@ If your Host-only network uses a different range than 192.168.56.x, use an addre
   
               Click the ceph-squid enterprise row (enterprise.proxmox.com/debian/ceph-squid), then click Disable.
              Click the pve-enterprise row (enterprise.proxmox.com/debian/pve), then click Disable.
+<img width="1876" height="739" alt="Screenshot 2026-10-22 134036" src="https://github.com/user-attachments/assets/43965326-b811-4491-b014-7b2eeadf8962" />
 
 2. Add the free repo
 - Click Add. If a warning about no subscription pops up, click OK.
 In the Repository dropdown, choose No-Subscription.
 - Click Add >> No Subscription >> Add
+<img width="1861" height="966" alt="Screenshot 2026-10-22 134319" src="https://github.com/user-attachments/assets/2b817ea7-80f9-4199-9230-0397a054e92a" />
+
 
 3. Update the system
 - Click Reload to refresh the list. It should finish without errors. If you get errors, the NAT internet adapter isn’t working yet (check with ping -c 3 google.com in the Shell).
 - Open Updates (just above Repositories in the left menu), click Refresh, then Upgrade. A console window opens and asks you to confirm: type Y and press Enter.
+<img width="1461" height="946" alt="Screenshot 2026-10-22 135453" src="https://github.com/user-attachments/assets/9ea574dd-c428-4f7e-9dc3-7c38ad4ee5f1" />
+<img width="1864" height="876" alt="Screenshot 2026-10-22 134429" src="https://github.com/user-attachments/assets/81148a73-5ec2-43b6-bc1e-d61b3e66bf8d" />
+
+
 - Wait for it to finish. It may take several minutes.
 
 Or do it all in the Shell tab:
@@ -191,9 +198,15 @@ Or do it all in the Shell tab:
 
 4. Take a snapshot
 
-- Once the upgrade finishes, shut down the VM and take a VirtualBox snapshot (Machine > Take Snapshot), so you can roll back if you break something later.
+- Once the upgrade finishes, shut down the VM and take a VirtualBox snapshot (Machine > Take Snapshot), so you can roll back if you break something later, or
+- Open the VirtualBox Manager window on Windows and select your Proxmox VM in the list.
+- Click the Snapshots tab (in newer versions, click the small list icon next to the VM name and choose Snapshots).
+- Click Take.
+- Name it something like Fresh updated Proxmox 9.2.21 and click OK
+<img width="1284" height="720" alt="image" src="https://github.com/user-attachments/assets/0a14c66d-069f-4453-9cf4-2f2daa58403a" />
 
-## The “no valid subscription” popup at login will keep appearing. That’s normal on the free version, so just click OK.
+
+## Note: The “no valid subscription” popup at login will keep appearing. That’s normal on the free version, so just click OK.
 
   
 
