@@ -108,6 +108,7 @@
 
 - Create the Host-only network (Windows)
 In VirtualBox, go to File → Tools → Network Manager → Host-only Networks. If one already exists, use it. If not, click Create. Note its IPv4 address (usually 192.168.56.1/24). Leave the DHCP server unticked, since Proxmox will use a static IP.
+<img width="1219" height="727" alt="Screenshot 2026-10-22 114919" src="https://github.com/user-attachments/assets/00ec13e3-538e-443d-8f4e-38d75267a1f1" />
 
 - Switch the VM’s adapter
 Power off the VM (poweroff in the console). Then go to Settings → Network → Adapter 1 → Attached to: Host-only Adapter and pick that network from the Name dropdown.
@@ -133,6 +134,39 @@ Start the VM, log in as root, and run:
 Browse to https://192.168.56.10:8006, click Advanced → Proceed, and log in as root with the Linux PAM realm.
 
 If your Host-only network uses a different range than 192.168.56.x, use an address in that range instead.
+
+## One thing to know first: with Host-only, Proxmox has no internet access. That blocks updates and downloading templates. Fix it by adding a second adapter:
+
+- Power off the VM.
+- Settings > Network > Adapter 2 > Enable, Attached to: NAT.
+- Start the VM, log in, and run ip a to find the new interface name (probably nic1 or ens4).
+- In nano /etc/network/interfaces, add:
+               auto nic1
+               iface nic1 inet dhcp to look like this
+  
+            auto lo
+            iface lo inet loopback
+            
+            iface nic0 inet manual
+            
+            auto vmbr0
+            iface vmbr0 inet static
+                    address 192.168.56.10/24
+                    bridge-ports nic0
+                    bridge-stp off
+                    bridge-fd 0
+            
+            auto enp0s8
+            iface enp0s8 inet dhcp
+            
+            source /etc/network/interfaces.d/*
+<img width="1254" height="595" alt="image" src="https://github.com/user-attachments/assets/910f6bcf-fee3-4512-bc2f-29ea6402d947" />
+
+- Apply and test:
+  
+      ifreload -a
+      ip -br addr
+      ping -c 3 google.com
 
 
 
