@@ -141,8 +141,10 @@ If your Host-only network uses a different range than 192.168.56.x, use an addre
 - Settings > Network > Adapter 2 > Enable, Attached to: NAT.
 - Start the VM, log in, and run ip a to find the new interface name (probably nic1 or ens4).
 - In nano /etc/network/interfaces, add:
-               auto nic1
-               iface nic1 inet dhcp to look like this
+
+  'auto enp0s8'  (or any one you see when you run ip -br addr)
+
+  'iface enp0s8 inet dhcp' to look like this
   
             auto lo
             iface lo inet loopback
