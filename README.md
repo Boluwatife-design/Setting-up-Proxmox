@@ -13,7 +13,7 @@ A step-by-step record of how I built a Proxmox VE 9.2 learning lab inside Virtua
 ```
 Windows PC (host)
 └── VirtualBox
-    └── Proxmox VE 9.2 VM  (192.168.56.10)
+    └── Proxmox VE 9.2 VM  (192.168.xx.xx)
         ├── LXC containers   (planned)
         └── Test VMs         (needs nested virtualization, see Known limitations)
 ```
@@ -24,10 +24,10 @@ Windows PC (host)
 | Hypervisor | VirtualBox |
 | Guest | Proxmox VE 9.2 (Debian 13 "trixie" base) |
 | vCPUs / RAM / Disk | 2+ / 4-8 GB / 32 GB |
-| Adapter 1 | Host-only (`192.168.56.0/24`), used for the web UI |
+| Adapter 1 | Host-only (`192.168.xx.xx/24`), used for the web UI |
 | Adapter 2 | NAT, used for internet (updates, templates) |
-| Proxmox IP | `192.168.56.10/24` (static, no gateway on `vmbr0`) |
-| Web UI | `https://192.168.56.10:8006` |
+| Proxmox IP | `192.168.xx.xx/24` (static, no gateway on `vmbr0`) |
+| Web UI | `https://192.168.xx.xx:8006` |
 | Login | user `root`, realm **Linux PAM** |
 
 ## 1. Prerequisites
@@ -55,7 +55,7 @@ Switch Settings to **Expert** mode and tick **System > Processor > Enable Nested
 Bridged mode caused an IP conflict with the Windows PC on the office network, so this lab uses two adapters instead.
 
 **3.1 Create the Host-only network (Windows)**
-VirtualBox > **File > Tools > Network Manager > Host-only Networks**. Use the existing one or click **Create**. Note its address (usually `192.168.56.1/24`). Leave the DHCP server off.
+VirtualBox > **File > Tools > Network Manager > Host-only Networks**. Use the existing one or click **Create**. Note its address (usually `192.168.xx.x/24`). Leave the DHCP server off.
 
 **3.2 Set the VM adapters** (VM powered off)
 
@@ -83,7 +83,7 @@ iface nic0 inet manual
 
 auto vmbr0
 iface vmbr0 inet static
-        address 192.168.56.10/24
+        address 192.168.xx.xx/24
         bridge-ports nic0
         bridge-stp off
         bridge-fd 0
@@ -101,7 +101,7 @@ source /etc/network/interfaces.d/*
 Update `/etc/hosts`:
 
 ```
-192.168.56.10 pve.lab pve
+192.168.xx.xx pve.lab pve
 ```
 
 Apply:
@@ -111,7 +111,7 @@ ifreload -a
 ping -c 3 google.com
 ```
 
-Then open `https://192.168.56.10:8006` from Windows, accept the certificate warning, and log in as `root` (Linux PAM).
+Then open `https://192.168.xx.xx:8006` from Windows, accept the certificate warning, and log in as `root` (Linux PAM).
 
 ## 6. Fix repositories and update
 
