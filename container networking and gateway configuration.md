@@ -27,6 +27,19 @@
 
 <img width="768" height="578" alt="image" src="https://github.com/user-attachments/assets/1e179a1b-d778-4ff1-83b2-9e62d35524e7" />
 
+## Step 3: Open and explore it
+- Click the container in the left tree, then Console.
+- Log in as root with the password you set.
+- Try these:
+  
+         hostname
+         ip a
+         free -m
+         ping -c 3 192.168.56.10
+  
+- Back in the web UI, look at the Summary tab (CPU, memory, uptime) and the Resources, Network, and Options tabs.
+### Note: At this point the container can reach Proxmox but not the internet, because the host-only network has no route out.
+
 
 
 
