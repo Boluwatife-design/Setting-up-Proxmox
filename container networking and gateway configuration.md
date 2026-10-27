@@ -77,3 +77,10 @@ Do these on the container:
 - Back in Snapshots, select clean and click Rollback. Confirm.
 - Start the container, open the console, and run ls /root. The file should be gone.
 
+<img width="1905" height="863" alt="Screenshot 2026-10-26 161938" src="https://github.com/user-attachments/assets/f0007d96-deaa-470d-b947-c291a78c9201" />
+<img width="1919" height="909" alt="Screenshot 2026-10-26 162130" src="https://github.com/user-attachments/assets/6d9534ed-ad0b-4b31-9c83-c67df7326e00" />
+<img width="1441" height="678" alt="Screenshot 2026-10-26 162209" src="https://github.com/user-attachments/assets/2476f1d3-43df-4879-a934-d51c569818f9" />
+<img width="1377" height="844" alt="Screenshot 2026-10-26 162229" src="https://github.com/user-attachments/assets/626b41f6-5592-465c-8561-c844cc442eb3" />, <img width="1899" height="895" alt="Screenshot 2026-10-26 162430" src="https://github.com/user-attachments/assets/a67492e9-94c2-403c-a93f-8ad705ae64f8" />
+
+
+
