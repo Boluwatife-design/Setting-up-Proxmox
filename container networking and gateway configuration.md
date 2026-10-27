@@ -17,7 +17,7 @@
       Disks	Storage: local-lvm. Size: 4 GB.
       CPU	Cores: 1
       Memory	Memory: 512 MB, Swap: 512 MB
-      Network	Bridge: vmbr0. IPv4: Static, IP 192.168.56.20/24. Gateway: 192.168.56.10 (your Proxmox host).
+      Network	Bridge: vmbr0. IPv4: Static, IP 192.168.xx.xx/24. Gateway: 192.168.56.10 (your Proxmox host).
       DNS	Set DNS server to 8.8.8.8
       Confirm	Tick Start after created, then Finish
       
@@ -35,11 +35,45 @@
          hostname
          ip a
          free -m
-         ping -c 3 192.168.56.10
+         ping -c 3 192.168.xx.10
   
 - Back in the web UI, look at the Summary tab (CPU, memory, uptime) and the Resources, Network, and Options tabs.
 ### Note: At this point the container can reach Proxmox but not the internet, because the host-only network has no route out.
 
+## Step 4: Give containers internet access (NAT on the host)
+This turns Proxmox into a small router: traffic from your containers goes out through the NAT adapter (enp0s8).
+- In the pve > Shell:
+
+      nano /etc/network/interfaces
+
+- Add these three lines inside the vmbr0 block, under bridge-fd 0:
+
+                post-up   echo 1 > /proc/sys/net/ipv4/ip_forward
+        post-up   iptables -t nat -A POSTROUTING -s 192.168.xx.0/24 -o enp0s8 -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -s 192.168.xx.0/24 -o enp0s8 -j MASQUERADE
+
+- Save, then run ifreload -a.
+- Test from the container console:
+
+      ping -c 3 8.8.8.8
+      apt update
+
+- If apt update works, the container has internet.
+<img width="1798" height="921" alt="image" src="https://github.com/user-attachments/assets/e0a9ab5d-7575-4fea-acde-691ccc6b3a51" />
 
 
+## Step 5: Practice the basics
+Do these on the container:
+- Open your proxmox in your browser.
+- In the left tree, click the container.
+- Click Snapshots in the middle menu.
+- Click Take Snapshot, name it clean, then click Take Snapshot. Wait for TASK OK.
+- In the container Console, make a change:
+
+        touch /root/i-should-disappear.txt
+         ls /root
+   
+- Shut down the container (top right).
+- Back in Snapshots, select clean and click Rollback. Confirm.
+- Start the container, open the console, and run ls /root. The file should be gone.
 
