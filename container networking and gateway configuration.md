@@ -82,5 +82,5 @@ Do these on the container:
 <img width="1441" height="678" alt="Screenshot 2026-10-26 162209" src="https://github.com/user-attachments/assets/2476f1d3-43df-4879-a934-d51c569818f9" />
 <img width="1377" height="844" alt="Screenshot 2026-10-26 162229" src="https://github.com/user-attachments/assets/626b41f6-5592-465c-8561-c844cc442eb3" />, <img width="1899" height="895" alt="Screenshot 2026-10-26 162430" src="https://github.com/user-attachments/assets/a67492e9-94c2-403c-a93f-8ad705ae64f8" />
 
-
+# Note: because we're running Proxmox inside VirtualBox, our networking setup is a nested lab. The exact bridge and NAT configuration can differ from a physical Proxmox server
 
